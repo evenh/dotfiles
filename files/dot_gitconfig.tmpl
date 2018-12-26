@@ -1,0 +1,51 @@
+[user]
+	name = {{ .git.name }}
+	email = {{ .git.email }}
+	useconfigonly = true
+	signingkey = {{ .git.signingkey }}
+[push]
+	default = simple
+[alias]
+  fu = !"git pull upstream master"
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  branches = "branch -va"
+  unstage = reset HEAD --
+  please = push --force-with-lease
+[filter "media"]
+	required = true
+	clean = git media clean %f
+	smudge = git media smudge %f
+[core]
+	excludesfile = ~/.gitignore_global
+	pager = diff-so-fancy | less --tabs=2 -RFX
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
+[mergetool]
+	keepBackup = true
+	prompt = false
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
+[commit]
+	template = ~/.stCommitMsg
+[pull]
+	rebase = true
+[gpg]
+	program = /usr/local/bin/gpg
+[color]
+	ui = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = 227
+	frag = magenta bold
+	commit = 227 bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse

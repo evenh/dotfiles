@@ -48,6 +48,10 @@ export PATH="/usr/local/opt/node@8/bin:$PATH"
 source <(kubectl completion zsh)
 alias kcd='kubectl config set-context $(kubectl config current- context) --namespace '
 
+# kube-ps1
+source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+PROMPT='$(kube_ps1)'$PROMPT
+
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
@@ -58,4 +62,5 @@ alias infra='infra.sh'
 # Java Home
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
+export JAVA_HOME=$(jenv javahome)
 export PATH=$JAVA_HOME/bin:$PATH
